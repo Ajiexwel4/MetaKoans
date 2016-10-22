@@ -37,7 +37,6 @@
 #   mountains are again merely mountains
 #   
 
-require './knowledge'
 module MetaKoans
 #
 # 'attribute' must provide getter, setter, and query to instances
@@ -228,7 +227,7 @@ end
 
 class MetaStudent
   def initialize knowledge
-    require knowledge
+    require_relative knowledge
   end
   def ponder koan
     begin
