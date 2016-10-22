@@ -1,8 +1,9 @@
+# Metakoan
 module MetaKoans
   def attribute(name, &block)
     name, value = name.first if name.is_a? Hash
-    
-    define_method "#{name}" do
+
+    define_method name.to_s do
       unless instance_variable_defined?("@#{name}")
         if value
           instance_variable_set("@#{name}", value)
@@ -10,12 +11,12 @@ module MetaKoans
           instance_variable_set("@#{name}", instance_eval(&block))
         end
       end
-            
+
       instance_variable_get("@#{name}")
     end
 
-    define_method "#{name}=" do |value|
-      instance_variable_set("@#{name}", value)
+    define_method "#{name}=" do |arg|
+      instance_variable_set("@#{name}", arg)
     end
 
     define_method "#{name}?" do
